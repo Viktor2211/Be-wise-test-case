@@ -14,11 +14,11 @@ WEB_EXTERNAL_PORT=8000
 '''
 
 ## Для запуска проекта, находясь к корне проекта прописать команду
-'''docker-compose up -d --build'''
+docker-compose up -d --build  
 
 
 ## Документация API по адресу http://127.0.0.1:8000/docs
-'''
+'''  
 method: POST  
 endpoint: 127.0.0.1:8000/questions  
 body: {'questions_num': integer}  
