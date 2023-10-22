@@ -1,17 +1,17 @@
 
 # В корне проекта создать файл .env со следующими данными  
 
-## Database  
 ```
+# Database  
+
 DB_HOST=db  
 DB_PORT=5432  
 DB_USER=db_user  
 DB_PASSWORD=db_password  
 DB_NAME=db_name
-``` 
 
-## Web
-```
+# Web  
+
 WEB_INTERNAL_PORT=8000  
 WEB_EXTERNAL_PORT=8000  
 ```
