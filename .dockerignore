@@ -1,0 +1,7 @@
+.env
+pgdata
+docker-compose.yml
+Dockerfile
+README.md
+.venv
+__pycache__

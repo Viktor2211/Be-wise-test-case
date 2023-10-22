@@ -1,3 +1,6 @@
 case overview.txt
 .venv
 __pycache__
+storage.db
+.env
+pg_data

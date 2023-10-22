@@ -1,0 +1,28 @@
+
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: "uvicorn app.main:app --host 0.0.0.0 --reload"
+    volumes:
+      - .:/backend
+    env_file:
+      - .env
+    ports:
+      - ${WEB_EXTERNAL_PORT}:${WEB_INTERNAL_PORT}
+    depends_on:
+      - db
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data/
+    expose:
+      - ${DB_PORT}
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+  
