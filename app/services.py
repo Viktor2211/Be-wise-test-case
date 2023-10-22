@@ -9,7 +9,7 @@ def query(url: str, params: dict) -> list:
     retry_strategy = Retry(
         total=3,
         status_forcelist=[429, 500, 502, 503, 504],
-        allowed_methods=["POST"],
+        allowed_methods=["POST", "GET"],
         backoff_factor=1,
     )
     adapter = HTTPAdapter(max_retries=retry_strategy)
@@ -28,12 +28,10 @@ def query(url: str, params: dict) -> list:
         raise JServiceException(e)
 
 
-def get_or_create(session, question: Question):
-    instance = session.query(Question).filter(
+def get_or_create(session, question: Question) -> Question | None:
+    has_instance = session.query(Question).filter(
         Question.text_question == question.text_question).first()
-    if instance:
-        return False
-    else:
+    if not has_instance:
         session.add(question)
         session.commit()
-        return True
+    return has_instance

@@ -39,11 +39,9 @@ async def questions(db: db_dependency, request: QuestionRequest):
             instance.text_answer = quiz.answer
             instance.text_question = quiz.question
             instance.created_at = quiz.created_at
-            unrecorded = get_or_create(question=instance, session=db)
-            if unrecorded:
+            has_instance = get_or_create(question=instance, session=db)
+            if not has_instance:
                 current_number -= 1
-            else:
-                continue
 
     previous_record = db.query(models.Question).order_by(
         models.Question.id.desc()).first()
